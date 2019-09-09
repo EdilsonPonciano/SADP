@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0c07d9p" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+  <bpmn:process id="Process_02jptz2" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1vbu9xu">
+      <bpmn:outgoing>SequenceFlow_1wkttc4</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0b6rcjj" />
+    </bpmn:startEvent>
+    <bpmn:dataObjectReference id="DataObjectReference_1keaund" name="RPI" dataObjectRef="DataObject_07pxhx8" />
+    <bpmn:dataObject id="DataObject_07pxhx8" />
+    <bpmn:scriptTask id="ScriptTask_1gd0i8m" name="Verificar Status de atualização da RPI">
+      <bpmn:incoming>SequenceFlow_1wkttc4</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0pfaw52</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1660cle</bpmn:outgoing>
+      <bpmn:property id="Property_01bi2eb" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0n1zal9">
+        <bpmn:sourceRef>DataObjectReference_1keaund</bpmn:sourceRef>
+        <bpmn:targetRef>Property_01bi2eb</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0eteanm" name="Nova RPI Publicada?" default="SequenceFlow_0pfaw52">
+      <bpmn:incoming>SequenceFlow_1660cle</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0pfaw52</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_18oo2yt</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1wkttc4" sourceRef="StartEvent_1vbu9xu" targetRef="ScriptTask_1gd0i8m" />
+    <bpmn:sequenceFlow id="SequenceFlow_0pfaw52" name="Não" sourceRef="ExclusiveGateway_0eteanm" targetRef="ScriptTask_1gd0i8m" />
+    <bpmn:sequenceFlow id="SequenceFlow_1660cle" sourceRef="ScriptTask_1gd0i8m" targetRef="ExclusiveGateway_0eteanm" />
+    <bpmn:sequenceFlow id="SequenceFlow_18oo2yt" sourceRef="ExclusiveGateway_0eteanm" targetRef="IntermediateThrowEvent_0ah2ug4" />
+    <bpmn:endEvent id="IntermediateThrowEvent_0ah2ug4">
+      <bpmn:incoming>SequenceFlow_18oo2yt</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:textAnnotation id="TextAnnotation_05p6k1m">
+      <bpmn:text>A cada 1 h consultar base do INPI (RPI)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0ov3boa" sourceRef="StartEvent_1vbu9xu" targetRef="TextAnnotation_05p6k1m" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_02jptz2">
+      <bpmndi:BPMNShape id="StartEvent_1vbu9xu_di" bpmnElement="StartEvent_1vbu9xu">
+        <dc:Bounds x="170" y="256" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1keaund_di" bpmnElement="DataObjectReference_1keaund" bioc:stroke="#000" bioc:fill="#fff">
+        <dc:Bounds x="288" y="130" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="296" y="109" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_05p6k1m_di" bpmnElement="TextAnnotation_05p6k1m">
+        <dc:Bounds x="138" y="174" width="100" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ScriptTask_1gd0i8m_di" bpmnElement="ScriptTask_1gd0i8m">
+        <dc:Bounds x="256" y="234" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0eteanm_di" bpmnElement="ExclusiveGateway_0eteanm" isMarkerVisible="true" bioc:stroke="#000" bioc:fill="#fff">
+        <dc:Bounds x="435" y="249" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="433" y="219" width="55" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wkttc4_di" bpmnElement="SequenceFlow_1wkttc4">
+        <di:waypoint x="206" y="274" />
+        <di:waypoint x="256" y="274" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0ov3boa_di" bpmnElement="Association_0ov3boa">
+        <di:waypoint x="188" y="256" />
+        <di:waypoint x="188" y="228" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0n1zal9_di" bpmnElement="DataInputAssociation_0n1zal9">
+        <di:waypoint x="306" y="180" />
+        <di:waypoint x="306" y="234" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0pfaw52_di" bpmnElement="SequenceFlow_0pfaw52" bioc:stroke="#000" bioc:fill="#fff">
+        <di:waypoint x="460" y="299" />
+        <di:waypoint x="460" y="386" />
+        <di:waypoint x="306" y="386" />
+        <di:waypoint x="306" y="314" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="373" y="368" width="21" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1660cle_di" bpmnElement="SequenceFlow_1660cle">
+        <di:waypoint x="356" y="274" />
+        <di:waypoint x="435" y="274" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_18oo2yt_di" bpmnElement="SequenceFlow_18oo2yt">
+        <di:waypoint x="485" y="274" />
+        <di:waypoint x="564" y="274" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_08kj92e_di" bpmnElement="IntermediateThrowEvent_0ah2ug4">
+        <dc:Bounds x="564" y="256" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

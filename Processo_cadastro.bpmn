@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1gbzd04" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+  <bpmn:process id="Process_05dh2xv" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_0aegm9i">
+      <bpmn:outgoing>SequenceFlow_17gkj1j</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="UserTask_1snl5or" name="Ativar/ Cancelar cadastro">
+      <bpmn:incoming>SequenceFlow_1gvmakx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_00df7mg</bpmn:outgoing>
+      <bpmn:property id="Property_0bxwbol" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1uihtx6">
+        <bpmn:sourceRef>DataStoreReference_1sd00nb</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0bxwbol</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0uyo7zd">
+        <bpmn:targetRef>DataStoreReference_1sd00nb</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:userTask>
+    <bpmn:dataStoreReference id="DataStoreReference_1sd00nb" name="Banco de Dados" />
+    <bpmn:scriptTask id="ScriptTask_0b3n5gm" name="Gerenciar usuários Atualizar BD">
+      <bpmn:incoming>SequenceFlow_00df7mg</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1sy7fuu</bpmn:outgoing>
+      <bpmn:property id="Property_1364pvv" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0aea2b4">
+        <bpmn:sourceRef>DataStoreReference_1sd00nb</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1364pvv</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1rxzh98">
+        <bpmn:targetRef>DataStoreReference_1sd00nb</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:scriptTask>
+    <bpmn:userTask id="UserTask_093ujuk" name="Iniciar sistema">
+      <bpmn:incoming>SequenceFlow_17gkj1j</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1gvmakx</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_17gkj1j" sourceRef="StartEvent_0aegm9i" targetRef="UserTask_093ujuk" />
+    <bpmn:sequenceFlow id="SequenceFlow_1gvmakx" sourceRef="UserTask_093ujuk" targetRef="UserTask_1snl5or" />
+    <bpmn:sequenceFlow id="SequenceFlow_00df7mg" sourceRef="UserTask_1snl5or" targetRef="ScriptTask_0b3n5gm" />
+    <bpmn:endEvent id="EndEvent_02uuyde">
+      <bpmn:incoming>SequenceFlow_1sy7fuu</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1sy7fuu" sourceRef="ScriptTask_0b3n5gm" targetRef="EndEvent_02uuyde" />
+    <bpmn:textAnnotation id="TextAnnotation_06s0b1i">
+      <bpmn:text>Usuário Senha E-mail IPC</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0lasrao" sourceRef="UserTask_1snl5or" targetRef="TextAnnotation_06s0b1i" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_05dh2xv">
+      <bpmndi:BPMNShape id="StartEvent_0aegm9i_di" bpmnElement="StartEvent_0aegm9i">
+        <dc:Bounds x="156" y="148" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1snl5or_di" bpmnElement="UserTask_1snl5or">
+        <dc:Bounds x="394" y="126" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1sd00nb_di" bpmnElement="DataStoreReference_1sd00nb" bioc:stroke="#000" bioc:fill="#fff">
+        <dc:Bounds x="567" y="259" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="551" y="235" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_06s0b1i_di" bpmnElement="TextAnnotation_06s0b1i">
+        <dc:Bounds x="416" y="34" width="55" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ScriptTask_0b3n5gm_di" bpmnElement="ScriptTask_0b3n5gm">
+        <dc:Bounds x="692" y="244" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_093ujuk_di" bpmnElement="UserTask_093ujuk">
+        <dc:Bounds x="242" y="126" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_17gkj1j_di" bpmnElement="SequenceFlow_17gkj1j">
+        <di:waypoint x="192" y="166" />
+        <di:waypoint x="242" y="166" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1gvmakx_di" bpmnElement="SequenceFlow_1gvmakx">
+        <di:waypoint x="342" y="166" />
+        <di:waypoint x="394" y="166" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1uihtx6_di" bpmnElement="DataInputAssociation_1uihtx6">
+        <di:waypoint x="567" y="284" />
+        <di:waypoint x="444" y="284" />
+        <di:waypoint x="444" y="206" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_00df7mg_di" bpmnElement="SequenceFlow_00df7mg">
+        <di:waypoint x="494" y="166" />
+        <di:waypoint x="742" y="166" />
+        <di:waypoint x="742" y="244" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0lasrao_di" bpmnElement="Association_0lasrao">
+        <di:waypoint x="444" y="126" />
+        <di:waypoint x="444" y="99" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0uyo7zd_di" bpmnElement="DataOutputAssociation_0uyo7zd">
+        <di:waypoint x="444" y="206" />
+        <di:waypoint x="444" y="284" />
+        <di:waypoint x="567" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1rxzh98_di" bpmnElement="DataOutputAssociation_1rxzh98">
+        <di:waypoint x="692" y="284" />
+        <di:waypoint x="617" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0aea2b4_di" bpmnElement="DataInputAssociation_0aea2b4">
+        <di:waypoint x="617" y="284" />
+        <di:waypoint x="692" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_02uuyde_di" bpmnElement="EndEvent_02uuyde">
+        <dc:Bounds x="877" y="266" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1sy7fuu_di" bpmnElement="SequenceFlow_1sy7fuu">
+        <di:waypoint x="792" y="284" />
+        <di:waypoint x="877" y="284" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

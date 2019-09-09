@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_01sbw3z" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+  <bpmn:process id="Process_0vwm9cb" isExecutable="true">
+    <bpmn:userTask id="UserTask_0gcuspj" name="Receber alerta por e-mail">
+      <bpmn:incoming>SequenceFlow_03601wa</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1wwyujd</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="ServiceTask_1kvs7by" name="Enviar alerta customizado aos usuários">
+      <bpmn:incoming>SequenceFlow_051mn57</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03601wa</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:scriptTask id="ScriptTask_0cez4wl" name="GerarAlertas costumizados por usuário">
+      <bpmn:incoming>SequenceFlow_19jqdjb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_051mn57</bpmn:outgoing>
+      <bpmn:property id="Property_031hwej" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_14igcan">
+        <bpmn:sourceRef>DataStoreReference_0yrb2oj</bpmn:sourceRef>
+        <bpmn:targetRef>Property_031hwej</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="EndEvent_0u1jtp0">
+      <bpmn:incoming>SequenceFlow_1wwyujd</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_03601wa" sourceRef="ServiceTask_1kvs7by" targetRef="UserTask_0gcuspj" />
+    <bpmn:sequenceFlow id="SequenceFlow_1wwyujd" sourceRef="UserTask_0gcuspj" targetRef="EndEvent_0u1jtp0" />
+    <bpmn:sequenceFlow id="SequenceFlow_051mn57" sourceRef="ScriptTask_0cez4wl" targetRef="ServiceTask_1kvs7by" />
+    <bpmn:dataStoreReference id="DataStoreReference_0yrb2oj" name="Banco de Dados" />
+    <bpmn:startEvent id="StartEvent_1nd0ncc">
+      <bpmn:outgoing>SequenceFlow_19jqdjb</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_19jqdjb" sourceRef="StartEvent_1nd0ncc" targetRef="ScriptTask_0cez4wl" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0vwm9cb">
+      <bpmndi:BPMNShape id="UserTask_0gcuspj_di" bpmnElement="UserTask_0gcuspj">
+        <dc:Bounds x="524" y="48" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_1kvs7by_di" bpmnElement="ServiceTask_1kvs7by">
+        <dc:Bounds x="424" y="293" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ScriptTask_0cez4wl_di" bpmnElement="ScriptTask_0cez4wl">
+        <dc:Bounds x="258" y="293" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0u1jtp0_di" bpmnElement="EndEvent_0u1jtp0">
+        <dc:Bounds x="677" y="70" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_03601wa_di" bpmnElement="SequenceFlow_03601wa">
+        <di:waypoint x="524" y="333" />
+        <di:waypoint x="574" y="333" />
+        <di:waypoint x="574" y="128" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wwyujd_di" bpmnElement="SequenceFlow_1wwyujd">
+        <di:waypoint x="624" y="88" />
+        <di:waypoint x="677" y="88" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_051mn57_di" bpmnElement="SequenceFlow_051mn57">
+        <di:waypoint x="358" y="333" />
+        <di:waypoint x="424" y="333" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataStoreReference_0yrb2oj_di" bpmnElement="DataStoreReference_0yrb2oj" bioc:stroke="#000" bioc:fill="#fff">
+        <dc:Bounds x="283" y="189" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="267" y="165" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_14igcan_di" bpmnElement="DataInputAssociation_14igcan">
+        <di:waypoint x="308" y="239" />
+        <di:waypoint x="308" y="293" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_1nd0ncc_di" bpmnElement="StartEvent_1nd0ncc">
+        <dc:Bounds x="156" y="315" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_19jqdjb_di" bpmnElement="SequenceFlow_19jqdjb">
+        <di:waypoint x="192" y="333" />
+        <di:waypoint x="258" y="333" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

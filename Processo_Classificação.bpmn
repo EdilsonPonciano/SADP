@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1umcpzn" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.1.2">
+  <bpmn:process id="Process_04sgse7" isExecutable="true">
+    <bpmn:dataStoreReference id="DataStoreReference_0lwveph" name="Banco de Dados" />
+    <bpmn:scriptTask id="ScriptTask_0s5i381" name="Baixar RPI Classificar RPI Atualizar BD">
+      <bpmn:incoming>SequenceFlow_16hssky</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_14y87cs</bpmn:outgoing>
+      <bpmn:property id="Property_06is600" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_11ln4cd">
+        <bpmn:sourceRef>DataStoreReference_0lwveph</bpmn:sourceRef>
+        <bpmn:targetRef>Property_06is600</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0i9xksa">
+        <bpmn:sourceRef>DataObjectReference_1mc57ak</bpmn:sourceRef>
+        <bpmn:targetRef>Property_06is600</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1ojb0t2">
+        <bpmn:targetRef>DataStoreReference_0lwveph</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:scriptTask>
+    <bpmn:startEvent id="StartEvent_0gydlk0">
+      <bpmn:outgoing>SequenceFlow_16hssky</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_16hssky" sourceRef="StartEvent_0gydlk0" targetRef="ScriptTask_0s5i381" />
+    <bpmn:endEvent id="EndEvent_02o10y0">
+      <bpmn:incoming>SequenceFlow_14y87cs</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_14y87cs" sourceRef="ScriptTask_0s5i381" targetRef="EndEvent_02o10y0" />
+    <bpmn:dataObjectReference id="DataObjectReference_1mc57ak" name="RPI" dataObjectRef="DataObject_05o8rir" />
+    <bpmn:dataObject id="DataObject_05o8rir" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_04sgse7">
+      <bpmndi:BPMNShape id="DataStoreReference_0lwveph_di" bpmnElement="DataStoreReference_0lwveph" bioc:stroke="#000" bioc:fill="#fff">
+        <dc:Bounds x="290" y="105" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="274" y="81" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ScriptTask_0s5i381_di" bpmnElement="ScriptTask_0s5i381">
+        <dc:Bounds x="265" y="217" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1ojb0t2_di" bpmnElement="DataOutputAssociation_1ojb0t2">
+        <di:waypoint x="315" y="217" />
+        <di:waypoint x="315" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_11ln4cd_di" bpmnElement="DataInputAssociation_11ln4cd">
+        <di:waypoint x="315" y="155" />
+        <di:waypoint x="315" y="217" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_0gydlk0_di" bpmnElement="StartEvent_0gydlk0">
+        <dc:Bounds x="156" y="239" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_16hssky_di" bpmnElement="SequenceFlow_16hssky">
+        <di:waypoint x="192" y="257" />
+        <di:waypoint x="265" y="257" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_02o10y0_di" bpmnElement="EndEvent_02o10y0">
+        <dc:Bounds x="451" y="239" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_14y87cs_di" bpmnElement="SequenceFlow_14y87cs">
+        <di:waypoint x="365" y="257" />
+        <di:waypoint x="451" y="257" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataObjectReference_1mc57ak_di" bpmnElement="DataObjectReference_1mc57ak" bioc:stroke="#000" bioc:fill="#fff">
+        <dc:Bounds x="175" y="105" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="183" y="84" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0i9xksa_di" bpmnElement="DataInputAssociation_0i9xksa">
+        <di:waypoint x="193" y="155" />
+        <di:waypoint x="193" y="175" />
+        <di:waypoint x="287" y="175" />
+        <di:waypoint x="287" y="216" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
